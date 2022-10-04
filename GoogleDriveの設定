@@ -1,0 +1,48 @@
+Ⅰ、認証のためのslacｋのアプリを設定する
+参照：
+https://qiita.com/cabbage_lettuce/items/5841c02ec7cad8fa6a8f#linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E5%8C%96
+
+アプリ作成
+1、https://api.slack.com/ にアクセス
+2、「Start Building」ボタンをクリック（または、「Your Apps」画面から、「Create New Apps」をクリック）
+3、アプリ名とアプリを使うワークスペースを選択し、「Create App」を押す
+4、Add features and functionality ＞  Incoming Webhooks　をチェック（クリック）
+5、Activate Incoming Webhooks　を　on に
+6、WEB Hook　URL をコピーして、Ⅱへ
+
+
+Ⅱ、Linux　にて　/usr/local/bin/xdg-open　を作成
+1、xdg-openの内容
+#!/bin/bash
+curl -X POST -H "Content-type: application/json" --data '{"text":"Message from VPS : '"$@"'"}' "https://hooks.slack.com/services/（Ⅰ-6でコピーしたものを反映）" -kLso /dev/null
+read
+2、sudo chmod 777 xdg-open で実行権限を設定
+
+Ⅲ、google-drive-ocamlfuse　のインストール
+1、下記を実行
+sudo add-apt-repository ppa:alessandro-strada/ppa
+sudo apt-get update
+sudo apt-get install google-drive-ocamlfuse
+※「-bash: add-apt-repository: コマンドが見つかりません」と出た場合は、
+　　sudo apt install software-properties-common
+2、google-drive-ocamlfuse　を実行
+3、slacｋにメッセージが届いているので、リンクをクリックして、Googleの認証を行います
+4、SSH画面に戻ったら約1分後に　「Access token retrieved correctly.」　と出るので認証は完了します。
+
+Ⅳ、フォルダのマウント
+1、Google Driveのマイドライブと同期するディレクトリを作成します。例：　mkdir　GDrive
+2、フォルダの権限を設定
+chown [オプション] ユーザー[:グループ] フォルダ
+usermod -aG GROUPS USER
+chmod　-R 775 USER
+3、ドライブをマウント
+sudo google-drive-ocamlfuse -o allow_other GDrive
+
+V、フォルダのアンマウント（設定を失敗した場合は一旦アンマウントする）
+sudo fusermount -u GDrive
+
+Ⅵ、
+sudo vi /etc/fuse.conf
+
+
+
