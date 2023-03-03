@@ -44,5 +44,8 @@ sudo fusermount -u GDrive
 Ⅵ、
 sudo vi /etc/fuse.conf
 
+Ⅶ、fmserverがファイルの中身に書き込みできなくなった時下記を実行した。
+rm -rf ~user/.gdfuse
+
 
 
