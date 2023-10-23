@@ -1,0 +1,2 @@
+//共有フォルダのマウント,サーバー２の場合
+sudo mount -t cifs -o user=*****,password=***** //192.168.22.231/Data/Documents /srv02
