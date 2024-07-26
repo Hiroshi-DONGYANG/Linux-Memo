@@ -26,6 +26,18 @@ sudo apt-get install google-drive-ocamlfuse
 ※「-bash: add-apt-repository: コマンドが見つかりません」と出た場合は、
 　　sudo apt install software-properties-common
 2、google-drive-ocamlfuse　を実行
+※Googleのセキュリティ認証がかわったので下記対応
+　・GCPで新しいプロジェクトを作成
+　・OAUTH同意画面で外部認証で設定
+必要なスコープ
+https://www.googleapis.com/auth/drive
+https://www.googleapis.com/auth/drive.file
+https://www.googleapis.com/auth/drive.readonly
+※テストユーザーの登録を忘れずに
+　・認証情報でデスクトップアプリとして作成
+・下記を実行
+google-drive-ocamlfuse -headless -id [YOUR_CLIENT_ID] -secret [YOUR_CLIENT_SECRET]
+
 3、slacｋにメッセージが届いているので、リンクをクリックして、Googleの認証を行います
 4、SSH画面に戻ったら約1分後に　「Access token retrieved correctly.」　と出るので認証は完了します。
 
@@ -36,7 +48,13 @@ chown [オプション] ユーザー[:グループ] フォルダ
 usermod -aG GROUPS USER
 chmod　-R 775 USER
 3、ドライブをマウント
-sudo google-drive-ocamlfuse -o allow_other GDrive
+google-drive-ocamlfuse -o allow_other GDrive
+※fusermount: option allow_other only allowed if 'user_allow_other' is set in /etc/fuse.conf
+というエラーがでた場合は　/etc/fuse.conf　の　user_allow_other　部分を有効にします。
+ーーーー
+sudo nano /etc/fuse.conf
+＞＞　user_allow_otherのコメントアウトを解除します。#を削除して有効にします。
+ーーーー
 
 V、フォルダのアンマウント（設定を失敗した場合は一旦アンマウントする）
 sudo fusermount -u GDrive
