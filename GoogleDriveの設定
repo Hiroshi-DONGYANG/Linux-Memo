@@ -29,6 +29,10 @@ sudo apt-get install google-drive-ocamlfuse
 ※Googleのセキュリティ認証がかわったので下記対応
 　・GCPで新しいプロジェクトを作成
 　・OAUTH同意画面で外部認証で設定
+  「OAuthクライアントID」
+  アプリケーションの種類: ウェブアプリケーション
+  名前: 任意の表示名
+  承認済みのリダイレクト URI: http://127.0.0.1:8080/oauth2callback
 必要なスコープ
 https://www.googleapis.com/auth/drive
 https://www.googleapis.com/auth/drive.file
