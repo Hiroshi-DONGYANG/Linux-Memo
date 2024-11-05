@@ -71,3 +71,13 @@ rm -rf ~user/.gdfuse
 
 2024/01/31
 うまくマウントできずに、あれこれやって結局　rootで入り直し（su - ) マウント実行したらうまくいった。
+
+2024/11/05 
+root で実行しても、うまくいきませんでした。
+
+キャッシュや設定の問題: Google Drive OCamlFuse のキャッシュが破損している場合があります。
+キャッシュをクリアするには、~/.gdfuse/default ディレクトリを削除して、
+$ google-drive-ocamlfuse -headless -id [YOUR_CLIENT_ID] -secret [YOUR_CLIENT_SECRET]
+$ google-drive-ocamlfuse -o allow_other GDrive
+ で、設定できました。
+
