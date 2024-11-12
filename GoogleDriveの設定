@@ -81,3 +81,13 @@ $ google-drive-ocamlfuse -headless -id [YOUR_CLIENT_ID] -secret [YOUR_CLIENT_SEC
 $ google-drive-ocamlfuse -o allow_other GDrive
  で、設定できました。
 
+2024/11/12     
+GDriveMount.sh の書き方が間違っていたかも
+
+#!/usr/bin/bash → #!/bin/sh
+に変更したらマウントできた
+
+
+
+
+
