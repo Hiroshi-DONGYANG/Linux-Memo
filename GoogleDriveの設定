@@ -67,7 +67,7 @@ sudo fusermount -u GDrive
 sudo vi /etc/fuse.conf
 
 Ⅶ、fmserverがファイルの中身に書き込みできなくなった時下記を実行した。
-rm -rf ~user/.gdfuse
+rm -rf ~/.gdfuse
 
 2024/01/31
 うまくマウントできずに、あれこれやって結局　rootで入り直し（su - ) マウント実行したらうまくいった。
