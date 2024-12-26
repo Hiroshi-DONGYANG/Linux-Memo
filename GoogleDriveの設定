@@ -69,23 +69,16 @@ sudo vi /etc/fuse.conf
 Ⅶ、fmserverがファイルの中身に書き込みできなくなった時下記を実行した。
 rm -rf ~/.gdfuse
 
-2024/01/31
-うまくマウントできずに、あれこれやって結局　rootで入り直し（su - ) マウント実行したらうまくいった。
 
-2024/11/05 
-root で実行しても、うまくいきませんでした。
+GoogleWorkSpaceに登録していないアカウントでは、1週間でリフレッシュトークンが期限切れとなるため、
+週一で、マウントが切れてしまいます。マウントが切れたら、下記にて対応。もしくは、切れる前に対応。
 
-キャッシュや設定の問題: Google Drive OCamlFuse のキャッシュが破損している場合があります。
-キャッシュをクリアするには、~/.gdfuse/default ディレクトリを削除して、
+$ sudo rm -r ~/.gdfuse/default
+ でディレクトリを削除して、
 $ google-drive-ocamlfuse -headless -id [YOUR_CLIENT_ID] -secret [YOUR_CLIENT_SECRET]
 $ google-drive-ocamlfuse -o allow_other GDrive
- で、設定できました。
 
-2024/11/12     
-GDriveMount.sh の書き方が間違っていたかも
 
-#!/usr/bin/bash → #!/bin/sh
-に変更したらマウントできた
 
 
 
