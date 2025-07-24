@@ -1,1 +1,9 @@
+GoogleDriveの接続が切れていることがあるので、下記の手順で再マウントする
 
+1、GoogleDrive用のフォルダ(GDrive)が設置されているディレクトリに移動
+2、アンマウントする
+sudo fusermount -u GDrive
+3、アンマウント後、WinSCPなどでGDriveが空になっているか確認
+　ファイルが保存されている場合は削除する。
+4、マウントする
+google-drive-ocamlfuse -o allow_other GDrive
