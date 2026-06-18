@@ -1,0 +1,13 @@
+
+初期設定はいろいろあるが、とりあえずこれでマウントできます
+$ cd /opt/FileMaker/FileMaker\ Server/Data/Documents
+$ rclone mount gdrive: GDrive \
+  --config /home/ubuntu/.config/rclone/rclone.conf \
+  --vfs-cache-mode writes \
+  --allow-other \
+  --vfs-write-back 5s \
+  --dir-cache-time 30s \
+  --poll-interval 10s \
+  --rc \
+  --rc-addr localhost:5572 \
+  --rc-no-auth &
